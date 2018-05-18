@@ -47,7 +47,7 @@ print("""
 Created folder "Factorio", renaming to {0}
 """.format(factorio_server_name))
 
-for i in tqdm(range(5), total=5, unit='B', unit_scale=True):
+for i in tqdm(range(10), total=10, unit='B', unit_scale=True):
     time.sleep(1)
     
 subprocess.Popen("mv ./factorio {0}".format(factorio_server_name), shell=True)
@@ -56,7 +56,7 @@ print("""
 Starting Server...
 """)
 
-subprocess.Popen("./{0}/bin/x64/factorio --start-server {1} --server-settings ./standard-server-settings.json | tee ./{0}/server_log.txt".format(factorio_server_name, save_file_directory), shell=True)
+subprocess.Popen("./{0}/bin/x64/factorio --start-server {1} --server-settings ./standard-server-settings.json --port 10010 | tee ./{0}/server_log.txt".format(factorio_server_name, save_file_directory), shell=True)
 
 print("""
 Server Created!...
