@@ -13,6 +13,10 @@ import time
 
 save_file_directory = sys.argv[1]
 factorio_server_version = sys.argv[2]
+if len(sys.argv) == 4:
+    factorio_mods_directory = sys.argv[3]
+else:
+    factorio_mods_directory = "None"
 factorio_server_name = save_file_directory.split("/")[-1].replace(".zip","")
 
 # Argument Check 
@@ -47,10 +51,13 @@ print("""
 Created folder "Factorio", renaming to {0}
 """.format(factorio_server_name))
 
-for i in tqdm(range(10), total=10, unit='B', unit_scale=True):
+for i in tqdm(range(14), total=14, unit='B', unit_scale=True):
     time.sleep(1)
     
 subprocess.Popen("mv ./factorio {0}".format(factorio_server_name), shell=True)
+
+if factorio_mods_directory != "None":
+    subprocess.Popen("cp -r ./mods ./{0}/mods".format(factorio_server_name), shell=True)
 
 print("""
 Starting Server...
